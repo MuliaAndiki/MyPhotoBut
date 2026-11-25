@@ -1,0 +1,220 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* ==========================================================================
+     Typography Scale — "Parkinsans" Primary & Display
+     ========================================================================== */
+  --font-sans:
+    'Parkinsans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display:
+    'Parkinsans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:
+    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ==========================================================================
+     Tactile Pill & Card Radius Scale (from desain.png)
+     ========================================================================== */
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-pill: 9999px;
+
+  /* ==========================================================================
+     Primitive Brand Color Utilities (bg-brand-lime, text-brand-lavender, etc.)
+     ========================================================================== */
+  --color-brand-lavender: var(--brand-lavender);
+  --color-brand-lavender-hover: var(--brand-lavender-hover);
+  --color-brand-lavender-soft: var(--brand-lavender-soft);
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-lime-hover: var(--brand-lime-hover);
+  --color-brand-lime-soft: var(--brand-lime-soft);
+  --color-brand-obsidian: var(--brand-obsidian);
+  --color-brand-white: var(--brand-white);
+
+  /* ==========================================================================
+     Semantic Dual-Theme Colors (Light :root & Dark .dark)
+     ========================================================================== */
+  --color-background: var(--background);
+  --color-background-elevated: var(--background-elevated);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-contrast: var(--card-contrast);
+  --color-card-contrast-foreground: var(--card-contrast-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ============================================================================
+   Layer 1 (Primitives) & Layer 2 (Theme 1: Crisp White Light Mode — :root)
+   Matches Back Phone Screen in desain.png
+   ============================================================================ */
+:root {
+  /* Core Brand Primitives from desain.png */
+  --brand-lavender: #C575F8;
+  --brand-lavender-hover: #B558F5;
+  --brand-lavender-soft: #F5E8FF;
+  --brand-lime: #D8FF54;
+  --brand-lime-hover: #C8F531;
+  --brand-lime-soft: #F7FFE0;
+  --brand-obsidian: #181818;
+  --brand-white: #FFFFFF;
+
+  /* 20px Pill-Card Base Radius */
+  --radius: 1.25rem;
+
+  /* Light Theme Surfaces & Text */
+  --background: #FFFFFF;
+  --background-elevated: #F4F4F6;
+  --foreground: #181818;
+
+  --card: #FFFFFF;
+  --card-foreground: #181818;
+  --card-contrast: #181818;
+  --card-contrast-foreground: #FFFFFF;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #181818;
+
+  /* Primary Action = Acid Lime (#D8FF54) + Obsidian (#181818) Text */
+  --primary: #D8FF54;
+  --primary-foreground: #181818;
+
+  /* Secondary Action = Soft Gray Pill (#F4F4F6) + Obsidian (#181818) Text */
+  --secondary: #F4F4F6;
+  --secondary-foreground: #181818;
+
+  /* Accent Highlight = Electric Lavender (#C575F8) + Obsidian (#181818) Text */
+  --accent: #C575F8;
+  --accent-foreground: #181818;
+
+  --muted: #F4F4F6;
+  --muted-foreground: #52525B;
+
+  --destructive: #EF4444;
+  --border: #E4E4E7;
+  --input: #E4E4E7;
+  --ring: #C575F8;
+
+  --sidebar: #F8F8FA;
+  --sidebar-foreground: #181818;
+  --sidebar-primary: #181818;
+  --sidebar-primary-foreground: #D8FF54;
+  --sidebar-accent: #D8FF54;
+  --sidebar-accent-foreground: #181818;
+  --sidebar-border: #E4E4E7;
+  --sidebar-ring: #C575F8;
+}
+
+/* ============================================================================
+   Layer 2 (Theme 2: Obsidian Dark Mode — .dark)
+   Matches Front Phone Screen in desain.png
+   ============================================================================ */
+.dark {
+  --background: #181818;
+  --background-elevated: #222222;
+  --foreground: #FFFFFF;
+
+  --card: #222222;
+  --card-foreground: #FFFFFF;
+  --card-contrast: #FFFFFF;
+  --card-contrast-foreground: #181818;
+
+  --popover: #222222;
+  --popover-foreground: #FFFFFF;
+
+  /* Primary Action = Acid Lime (#D8FF54) + Obsidian (#181818) Text */
+  --primary: #D8FF54;
+  --primary-foreground: #181818;
+
+  /* Secondary High-Contrast Card = Crisp White (#FFFFFF) + Obsidian (#181818) Text */
+  --secondary: #FFFFFF;
+  --secondary-foreground: #181818;
+
+  /* Accent Highlight = Electric Lavender (#C575F8) + Obsidian (#181818) Text */
+  --accent: #C575F8;
+  --accent-foreground: #181818;
+
+  --muted: #262626;
+  --muted-foreground: #A1A1AA;
+
+  --destructive: #F87171;
+  --border: #2E2E2E;
+  --input: #2E2E2E;
+  --ring: #D8FF54;
+
+  --sidebar: #181818;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #D8FF54;
+  --sidebar-primary-foreground: #181818;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #2E2E2E;
+  --sidebar-ring: #D8FF54;
+}
+
+/* ============================================================================
+   Layer 3: Custom Component & Studio Utilities
+   ============================================================================ */
+@utility font-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'zero' 1;
+}
+
+@utility icon-badge-obsidian {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--brand-obsidian);
+  color: var(--brand-white);
+}
+
+@utility sticker-tilt-left {
+  transform: rotate(-2.5deg);
+}
+
+@utility sticker-tilt-right {
+  transform: rotate(2.5deg);
+}
+
+@utility viewfinder-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 12%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 12%) 1px, transparent 1px);
+  background-size: 33.333% 33.333%;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+}
