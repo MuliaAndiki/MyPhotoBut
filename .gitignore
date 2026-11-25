@@ -49,7 +49,20 @@ coverage.txt
 build-errors.log
 
 # -----------------------------------------------------------------------------
-# 4. Logs, OS, IDE & Agent Ephemeral Cache
+# 4. AI Agents, Skills & Knowledge Graph (Local Only)
+# -----------------------------------------------------------------------------
+.agents/
+.agent/
+.claude/
+.agent.md
+AGENTS.md
+CLAUDE.md
+claude.md
+GEMINI.md
+graphify-out/
+
+# -----------------------------------------------------------------------------
+# 5. Logs, OS & IDE
 # -----------------------------------------------------------------------------
 *.log
 npm-debug.log*
@@ -62,7 +75,3 @@ Thumbs.db
 *.swo
 *~
 .idea/
-
-# Graphify temporary extraction cache
-graphify-out/.graphify_*
-graphify-out/cache/
