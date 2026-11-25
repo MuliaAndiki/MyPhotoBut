@@ -15,5 +15,12 @@ export const env = {
   /** Base URL of the external REST API (no trailing slash). */
   API_BASE_URL: (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, ''),
   APP_ENV: parseAppEnv(import.meta.env.VITE_APP_ENV),
-  APP_NAME: import.meta.env.VITE_APP_NAME ?? 'Boilerpad',
+  APP_NAME: import.meta.env.VITE_APP_NAME ?? 'MyPhotoBut',
+  /** Canonical public site URL for SEO, OpenGraph, Sitemap, & JSON-LD (no trailing slash). */
+  SITE_URL: (
+    import.meta.env.VITE_SITE_URL ?? 'https://myphotobut.com'
+  ).replace(/\/+$/, ''),
+  /** Optional Google Search Console verification code (<meta name="google-site-verification" />). */
+  GOOGLE_SITE_VERIFICATION:
+    import.meta.env.VITE_GOOGLE_SITE_VERIFICATION ?? '',
 } as const

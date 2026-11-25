@@ -566,3 +566,58 @@ function SharedStripRouteComponent() {
   return <PublicStripViewer result={result} />
 }
 ```
+
+
+---
+
+## 6. AppConfig, Branded Footer, SEO, LLM (`llms.txt`), GEO & Web Manifest
+
+### 6.1 Konfigurasi Terpusat `AppConfig` (`src/config/app.config.ts`)
+
+Seluruh informasi identitas brand, metadata SEO, dan tautan media sosial untuk Footer dipusatkan di [web/src/config/app.config.ts](file:///home/muliaandiki/project/myphotobut/web/src/config/app.config.ts) menggunakan kontrak interface `AppConfig`:
+
+```typescript
+export interface AppConfig {
+  name: string
+  tagline: string
+  description: string
+  logo: string
+  email: string
+  metadata: {
+    title: string
+    description: string
+    keywords: string[]
+    author: string
+    image: string
+  }
+  social_media: {
+    twitter: { url: string; icon: string }
+    instagram: { url: string; icon: string }
+    linkedin: { url: string; icon: string }
+    youtube: { url: string; icon: string }
+    tiktok: { url: string; icon: string }
+  }
+}
+```
+
+Komponen [PublicLayout](file:///home/muliaandiki/project/myphotobut/web/src/components/layouts/public-layout.tsx) membaca `appConfig` untuk merender:
+- **Header Brand**: `appConfig.name` + badge `300 DPI`.
+- **Footer Studio**: `appConfig.name`, `appConfig.tagline` (di dalam badge miring `bg-brand-lime`), `appConfig.description`, tombol email `mailto:${appConfig.email}`, tautan indeks (`/llms.txt`, `/sitemap.xml`, `/manifest.webmanifest`), dan ikon tautan kelima platform di `appConfig.social_media` (`twitter`, `instagram`, `linkedin`, `youtube`, `tiktok`).
+
+### 6.2 Arsitektur SEO, GEO (Generative Engine Optimization) & Google Search Console
+
+Diimplementasikan pada [web/src/lib/seo/index.ts](file:///home/muliaandiki/project/myphotobut/web/src/lib/seo/index.ts) dan diinjeksikan secara global pada `head()` di [web/src/routes/__root.tsx](file:///home/muliaandiki/project/myphotobut/web/src/routes/__root.tsx):
+
+1. **Google Search Console Verification**:
+   - Cukup isi variabel `VITE_GOOGLE_SITE_VERIFICATION=<token_gsc_anda>` pada `.env.production`. Fungsi `buildSeoMeta()` secara otomatis menambahkan `<meta name="google-site-verification" content="..." />` di `<head>`.
+   - Daftarkan URL sitemap `https://<domain>/sitemap.xml` ([web/public/sitemap.xml](file:///home/muliaandiki/project/myphotobut/web/public/sitemap.xml)) pada dashboard Google Search Console.
+2. **Schema.org JSON-LD `@graph` (`buildGeoJsonLdGraph`)**:
+   - Menyuntikkan `<script type="application/ld+json">` pada SSR HTML yang berisi 4 skema terhubung:
+     - `Organization` (lengkap dengan `sameAs` dari seluruh URL `appConfig.social_media`)
+     - `WebSite`
+     - `WebApplication` (`applicationCategory: "PhotographyApplication"`, `isAccessibleForFree: true`, `featureList`)
+     - `FAQPage` (tanya-jawab terstruktur untuk meningkatkan kutipan langsung pada Google AI Overviews, ChatGPT Search, Perplexity, dan Claude).
+3. **LLM Context Discovery (`llms.txt` & `llms-full.txt`)**:
+   - Tersedia secara statis di [web/public/llms.txt](file:///home/muliaandiki/project/myphotobut/web/public/llms.txt) dan [web/public/llms-full.txt](file:///home/muliaandiki/project/myphotobut/web/public/llms-full.txt), serta direferensikan di `<head>` melalui `<link rel="alternate" type="text/plain" href="/llms.txt" />` dan diizinkan penuh untuk bot AI (`OAI-SearchBot`, `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`) di dalam [web/public/robots.txt](file:///home/muliaandiki/project/myphotobut/web/public/robots.txt).
+4. **PWA Web App Manifest (`manifest.webmanifest`)**:
+   - Tersedia di [web/public/manifest.webmanifest](file:///home/muliaandiki/project/myphotobut/web/public/manifest.webmanifest) dengan `background_color: "#181818"`, `theme_color: "#D8FF54"`, ikon vektor [web/public/logo.svg](file:///home/muliaandiki/project/myphotobut/web/public/logo.svg), serta *app shortcut* langsung menuju `/booth`.

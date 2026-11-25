@@ -1,0 +1,50 @@
+{
+  "name": "MyPhotoBut — Online Studio Photobooth & Community Frame Studio",
+  "short_name": "MyPhotoBut",
+  "description": "Online studio photobooth modern tanpa login. Ambil 3–4 pose via webcam dengan filter film Safari-safe, pilih frame eksklusif kreator komunitas, dan bagikan hasil photo strip 300 DPI secara instan via QR Code.",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#181818",
+  "theme_color": "#D8FF54",
+  "lang": "id-ID",
+  "dir": "ltr",
+  "categories": ["photography", "entertainment", "utilities", "social"],
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Enter Photobooth Studio",
+      "short_name": "Booth",
+      "description": "Mulai sesi pemotretan 3 atau 4 pose sekarang",
+      "url": "/booth",
+      "icons": [
+        {
+          "src": "/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

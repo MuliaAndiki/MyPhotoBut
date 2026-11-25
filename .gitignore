@@ -1,0 +1,68 @@
+# =============================================================================
+# MyPhotoBut — Consolidated Monorepo .gitignore (web/ + service/ + root)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 1. Environment Variables & Secrets (NEVER commit secrets)
+# -----------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.local
+.dev.vars
+.dev.vars.*
+
+# Keep committed public templates & mode files
+!.env.example
+!web/.env.development
+!web/.env.staging
+!web/.env.production
+
+# -----------------------------------------------------------------------------
+# 2. Frontend (web/ — TanStack Start, Vite, Bun, Cloudflare Workers)
+# -----------------------------------------------------------------------------
+node_modules/
+dist/
+dist-ssr/
+.output/
+.tanstack/
+.nitro/
+.vinxi/
+.wrangler/
+__unconfig*
+todos.json
+
+# -----------------------------------------------------------------------------
+# 3. Backend (service/ — Go 1.25, Air live-reload, tests & binaries)
+# -----------------------------------------------------------------------------
+tmp/
+service/api
+service/main
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.txt
+build-errors.log
+
+# -----------------------------------------------------------------------------
+# 4. Logs, OS, IDE & Agent Ephemeral Cache
+# -----------------------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+
+# Graphify temporary extraction cache
+graphify-out/.graphify_*
+graphify-out/cache/
