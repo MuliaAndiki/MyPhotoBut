@@ -3,7 +3,7 @@ import { createRouter as createTanStackRouter } from '@tanstack/react-router'
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
 import { ErrorFallback } from '@/components/common/error-fallback'
 import { NotFound } from '@/components/common/not-found'
-import { routeTree } from './routeTree.gen'
+import { routeTree } from './router/index'
 
 export function getRouter() {
   // A new QueryClient per router (i.e. per request on the server) prevents
@@ -39,5 +39,12 @@ export function getRouter() {
 declare module '@tanstack/react-router' {
   interface Register {
     router: ReturnType<typeof getRouter>
+  }
+}
+
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
   }
 }

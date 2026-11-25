@@ -1,5 +1,5 @@
 import { Link, Outlet } from '@tanstack/react-router'
-import { Home, LayoutDashboard, FileText, FormInput } from 'lucide-react'
+import { Home, LayoutDashboard, LogIn } from 'lucide-react'
 import { ThemeToggle } from '@/components/common/theme-toggle'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -21,8 +21,7 @@ import { env } from '@/lib/env'
 
 const items = [
   { to: '/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { to: '/examples/query', label: 'Query demo', icon: FileText },
-  { to: '/examples/form', label: 'Form demo', icon: FormInput },
+  { to: '/login', label: 'Creator Sign In', icon: LogIn },
   { to: '/', label: 'Home', icon: Home },
 ] as const
 

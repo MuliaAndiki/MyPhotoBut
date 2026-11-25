@@ -70,3 +70,13 @@ export const appConfig: AppConfig = {
     },
   },
 }
+
+export interface AppHeaderType {
+  title: string
+  url: string
+}
+
+export const AppHeaderConfig: AppHeaderType[] = [
+  { title: 'Sign in', url: '/' },
+  { title: 'Studio', url: '/' },
+]
